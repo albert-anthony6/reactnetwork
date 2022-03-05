@@ -1,0 +1,15 @@
+@import './_variables.scss';
+
+.app {
+  .app-header {
+    padding: 20px 0;
+    background-color: $lightest-neutral;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    svg {
+      height: 30px;
+      margin-right: 15px;
+    }
+  }
+}
