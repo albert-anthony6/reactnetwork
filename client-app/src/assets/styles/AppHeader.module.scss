@@ -1,0 +1,46 @@
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  padding: 30px 10%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: $lightest-neutral;
+  background-image: linear-gradient(
+    135deg,
+    rgb(24, 42, 115) 0%,
+    rgb(33, 138, 174) 69%,
+    rgb(32, 167, 172) 89%
+  );
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      @include font-size(13, 500, capitalize, 1.25);
+
+      &:not(:first-of-type) {
+        padding: 0 15px;
+        border-left: 1px solid $divider;
+      }
+    }
+  }
+  .logo {
+    padding-right: 15px;
+    img {
+      width: 30px;
+      margin-right: 15px;
+    }
+    h2 {
+      @include font-size(15, bold, capitalize, 1.25);
+    }
+  }
+}

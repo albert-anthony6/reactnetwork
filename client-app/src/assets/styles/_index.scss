@@ -13,13 +13,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: $main-bg;
 
   ul {
     list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.btn-primary {
+  cursor: pointer;
+  background-color: $btn-primary;
+  padding: 7px 10px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: $btn-primary-hover;
+  }
 }

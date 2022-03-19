@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import './assets/styles/App.scss';
+import React, { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { Activity } from './models/activity';
+import AppHeader from './components/AppHeader';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -18,11 +16,8 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <FontAwesomeIcon icon={faUsers} />
-        <h2>ReactNetwork</h2>
-      </header>
+    <Fragment>
+      <AppHeader />
       <main>
         <ul>
           {activities.map((activity) => (
@@ -30,7 +25,7 @@ function App() {
           ))}
         </ul>
       </main>
-    </div>
+    </Fragment>
   );
 }
 
