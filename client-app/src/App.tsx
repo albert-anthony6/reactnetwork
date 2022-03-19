@@ -3,15 +3,18 @@ import './assets/styles/App.scss';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { Activity } from './models/activity';
 
 function App() {
-  const [activities, setActivities] = useState([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/activities').then((resp) => {
-      console.log(resp);
-      setActivities(resp.data);
-    });
+    axios
+      .get<Activity[]>('http://localhost:5000/api/activities')
+      .then((resp) => {
+        console.log(resp);
+        setActivities(resp.data);
+      });
   }, []);
 
   return (
@@ -22,7 +25,7 @@ function App() {
       </header>
       <main>
         <ul>
-          {activities.map((activity: any) => (
+          {activities.map((activity) => (
             <li key={activity.id}>{activity.title}</li>
           ))}
         </ul>
