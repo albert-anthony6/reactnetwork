@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Activity } from './models/activity';
 import AppHeader from './components/AppHeader';
+import ActivityDashboard from './components/ActivityDashboard';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -19,11 +20,7 @@ function App() {
     <Fragment>
       <AppHeader />
       <main>
-        <ul>
-          {activities.map((activity) => (
-            <li key={activity.id}>{activity.title}</li>
-          ))}
-        </ul>
+        <ActivityDashboard activities={activities} />
       </main>
     </Fragment>
   );

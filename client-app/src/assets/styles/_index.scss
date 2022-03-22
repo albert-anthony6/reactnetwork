@@ -13,7 +13,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $main-bg;
+  background-color: $light-neutral;
+  padding: 120px 10%;
 
   ul {
     list-style: none;
@@ -23,6 +24,10 @@ body {
     text-decoration: none;
     color: inherit;
   }
+
+  h5 {
+    @include font-size(rem(22), bold, capitalize, 1.25);
+  }
 }
 
 code {
@@ -30,13 +35,35 @@ code {
     monospace;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-primary__blue,
+.btn-primary__green,
+.btn-secondary {
   cursor: pointer;
-  background-color: $btn-primary;
-  padding: 7px 10px;
+  background-color: $primary;
+  padding: 7px 20px;
   border-radius: 3px;
   transition: background-color 0.2s ease;
-  &:hover {
-    background-color: $btn-primary-hover;
+  &__blue {
+    background-color: $blue;
+    color: $lightest-neutral;
+    &:hover {
+      background-color: $blue-hover;
+    }
   }
+  &__green {
+    padding: 7px 10px;
+    background-color: $green;
+    color: $lightest-neutral;
+    &:hover {
+      background-color: $green-hover;
+    }
+  }
+}
+
+.btn-secondary {
+  cursor: default;
+  padding: 7px 10px;
+  background-color: transparent;
+  border: 1px solid $divider;
 }

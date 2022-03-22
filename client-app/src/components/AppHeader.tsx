@@ -13,7 +13,7 @@ export default function AppHeader() {
           <a href="#">Activities</a>
         </li>
         <li>
-          <div className="btn-primary">Create Activity</div>
+          <div className="btn-primary__green">Create Activity</div>
         </li>
       </ul>
     </header>
