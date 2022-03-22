@@ -1,7 +1,7 @@
 .activity-list {
   padding: 15px;
   background-color: $lightest-neutral;
-  max-width: 40%;
+  width: 50%;
   font-weight: 500;
   line-height: 23px;
   .item {
@@ -19,6 +19,12 @@
       align-items: center;
       justify-content: space-between;
       margin-top: 15px;
+      .category {
+        cursor: default;
+        pointer-events: none;
+        border-width: 1px;
+        border-color: $divider;
+      }
     }
   }
 }

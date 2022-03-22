@@ -12,11 +12,13 @@ export default function ActivityList({ activities }: Props) {
       {activities.map((activity) => (
         <div className={styles['item']} key={activity.id}>
           <h5>{activity.title}</h5>
-          <div className={styles['date']}>{activity.date}</div>
-          <div>{activity.description}</div>
-          <div>{activity.venue}</div>
+          <p className={styles['date']}>{activity.date}</p>
+          <p>{activity.description}</p>
+          <p>{activity.venue}</p>
           <div className={styles['list-bottom']}>
-            <div className="btn-secondary">{activity.category}</div>
+            <div className={`${styles['category']} btn-secondary`}>
+              {activity.category}
+            </div>
             <div className="btn-primary__blue">View</div>
           </div>
         </div>

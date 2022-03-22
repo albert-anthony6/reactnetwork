@@ -39,6 +39,7 @@ code {
 .btn-primary__blue,
 .btn-primary__green,
 .btn-secondary {
+  display: inline-block;
   cursor: pointer;
   background-color: $primary;
   padding: 7px 20px;
@@ -62,8 +63,9 @@ code {
 }
 
 .btn-secondary {
-  cursor: default;
+  display: inline-block;
+  cursor: pointer;
   padding: 7px 10px;
   background-color: transparent;
-  border: 1px solid $divider;
+  border: 2px solid $grey;
 }
