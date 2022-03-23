@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Activity } from './models/activity';
 import AppHeader from './components/AppHeader';
 import ActivityDashboard from './components/ActivityDashboard';
+import { v4 as uuid } from 'uuid';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -36,6 +37,21 @@ function App() {
     setEditMode(false);
   }
 
+  function handleCreatedOrEditActivity(activity: Activity) {
+    activity.id
+      ? setActivities([
+          ...activities.filter((element) => element.id !== activity.id),
+          activity,
+        ])
+      : setActivities([...activities, { ...activity, id: uuid() }]);
+    setEditMode(false);
+    setSelectedActivity(activity);
+  }
+
+  function handleDeleteActivity(id: string) {
+    setActivities([...activities.filter((activity) => activity.id !== id)]);
+  }
+
   return (
     <Fragment>
       <AppHeader openForm={handleFormOpen} />
@@ -48,6 +64,8 @@ function App() {
           editMode={editMode}
           openForm={handleFormOpen}
           closeForm={handleFormClose}
+          createOrEdit={handleCreatedOrEditActivity}
+          deleteActivity={handleDeleteActivity}
         />
       </main>
     </Fragment>

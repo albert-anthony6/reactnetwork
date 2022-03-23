@@ -5,9 +5,14 @@ import styles from '../assets/styles/ActivityList.module.scss';
 interface Props {
   activities: Activity[];
   selectActivity: (id: string) => void;
+  deleteActivity: (id: string) => void;
 }
 
-export default function ActivityList({ activities, selectActivity }: Props) {
+export default function ActivityList({
+  activities,
+  selectActivity,
+  deleteActivity,
+}: Props) {
   return (
     <div className={styles['activity-list']}>
       {activities.map((activity) => (
@@ -20,11 +25,19 @@ export default function ActivityList({ activities, selectActivity }: Props) {
             <div className={`${styles['category']} btn-secondary`}>
               {activity.category}
             </div>
-            <div
-              onClick={() => selectActivity(activity.id)}
-              className="btn-primary__blue"
-            >
-              View
+            <div className={styles['action-btns']}>
+              <div
+                onClick={() => selectActivity(activity.id)}
+                className="btn-primary__blue"
+              >
+                View
+              </div>
+              <div
+                onClick={() => deleteActivity(activity.id)}
+                className="btn-primary__red"
+              >
+                Delete
+              </div>
             </div>
           </div>
         </div>

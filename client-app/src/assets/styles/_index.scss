@@ -38,6 +38,7 @@ code {
 .btn-primary,
 .btn-primary__blue,
 .btn-primary__green,
+.btn-primary__red,
 .btn-secondary,
 .btn-secondary__filled {
   display: inline-block;
@@ -55,6 +56,13 @@ code {
       background-color: $blue-hover;
     }
   }
+  &__red {
+    background-color: $red;
+    color: $lightest-neutral;
+    &:hover {
+      background-color: $red-hover;
+    }
+  }
   &__green {
     padding: 7px 10px;
     background-color: $green;
@@ -70,9 +78,8 @@ code {
   padding: 7px 10px;
   background-color: transparent;
   border: 2px solid $grey;
-}
-
-.btn-secondary__filled {
-  border: none;
-  background-color: $light-grey;
+  &__filled {
+    border: none;
+    background-color: $light-grey;
+  }
 }

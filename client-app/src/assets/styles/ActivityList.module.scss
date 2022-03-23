@@ -25,6 +25,11 @@
         border-width: 1px;
         border-color: $divider;
       }
+      .action-btns {
+        div {
+          margin-left: 10px;
+        }
+      }
     }
   }
 }

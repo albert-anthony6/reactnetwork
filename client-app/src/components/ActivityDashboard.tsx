@@ -13,6 +13,8 @@ interface Props {
   editMode: boolean;
   openForm: (id: string) => void;
   closeForm: () => void;
+  createOrEdit: (activity: Activity) => void;
+  deleteActivity: (id: string) => void;
 }
 
 export default function ActivityDashboard({
@@ -23,10 +25,16 @@ export default function ActivityDashboard({
   editMode,
   openForm,
   closeForm,
+  createOrEdit,
+  deleteActivity,
 }: Props) {
   return (
     <div className={styles['activity-dashboard']}>
-      <ActivityList activities={activities} selectActivity={selectActivity} />
+      <ActivityList
+        activities={activities}
+        selectActivity={selectActivity}
+        deleteActivity={deleteActivity}
+      />
       <div className={styles['dashboard-right']}>
         {selectedActivity && !editMode && (
           <ActivityDetails
@@ -36,7 +44,11 @@ export default function ActivityDashboard({
           />
         )}
         {editMode && (
-          <ActivityForm closeForm={closeForm} activity={selectedActivity} />
+          <ActivityForm
+            closeForm={closeForm}
+            activity={selectedActivity}
+            createOrEdit={createOrEdit}
+          />
         )}
       </div>
     </div>
