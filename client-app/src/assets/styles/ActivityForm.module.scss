@@ -1,0 +1,21 @@
+.activity-form {
+  background-color: $lightest-neutral;
+  padding: 15px;
+  input[type='text'],
+  textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid $grey;
+    outline: none;
+    resize: none;
+  }
+  .form-buttons {
+    text-align: right;
+    & button:first-child {
+      margin-right: 5px;
+    }
+  }
+}

@@ -38,13 +38,16 @@ code {
 .btn-primary,
 .btn-primary__blue,
 .btn-primary__green,
-.btn-secondary {
+.btn-secondary,
+.btn-secondary__filled {
   display: inline-block;
   cursor: pointer;
   background-color: $primary;
   padding: 7px 20px;
   border-radius: 3px;
   transition: background-color 0.2s ease;
+  outline: none;
+  border: none;
   &__blue {
     background-color: $blue;
     color: $lightest-neutral;
@@ -62,10 +65,14 @@ code {
   }
 }
 
-.btn-secondary {
-  display: inline-block;
-  cursor: pointer;
+.btn-secondary,
+.btn-secondary__filled {
   padding: 7px 10px;
   background-color: transparent;
   border: 2px solid $grey;
+}
+
+.btn-secondary__filled {
+  border: none;
+  background-color: $light-grey;
 }
