@@ -1,22 +1,93 @@
-import React from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { Activity } from '../models/activity';
 import styles from '../assets/styles/ActivityForm.module.scss';
 
-export default function ActivityForm() {
+interface Props {
+  activity: Activity | undefined;
+  closeForm: () => void;
+}
+
+export default function ActivityForm({
+  activity: selectedActivity,
+  closeForm,
+}: Props) {
+  const initialState = selectedActivity ?? {
+    id: '',
+    title: '',
+    category: '',
+    description: '',
+    date: '',
+    city: '',
+    venue: '',
+  };
+
+  const [activity, setActivity] = useState(initialState);
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    console.log(activity);
+  }
+
+  function handleInputChange(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const { name, value } = event.target;
+    setActivity({ ...activity, [name]: value });
+  }
+
   return (
-    <form className={styles['activity-form']}>
-      <input type="text" placeholder="Title" />
+    <form
+      onSubmit={handleSubmit}
+      autoComplete="off"
+      className={styles['activity-form']}
+    >
+      <input
+        type="text"
+        placeholder="Title"
+        value={activity.title}
+        name="title"
+        onChange={handleInputChange}
+      />
       <textarea
-        name="description"
         id="description"
         placeholder="Description"
         rows={5}
+        value={activity.description}
+        name="description"
+        onChange={handleInputChange}
       />
-      <input type="text" placeholder="Category" />
-      <input type="text" placeholder="Date" />
-      <input type="text" placeholder="City" />
-      <input type="text" placeholder="Venue" />
+      <input
+        type="text"
+        placeholder="Category"
+        value={activity.category}
+        name="category"
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        placeholder="Date"
+        value={activity.date}
+        name="date"
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        placeholder="City"
+        value={activity.city}
+        name="city"
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        placeholder="Venue"
+        value={activity.venue}
+        name="venue"
+        onChange={handleInputChange}
+      />
       <div className={styles['form-buttons']}>
-        <button className="btn-secondary__filled">Cancel</button>
+        <button onClick={closeForm} className="btn-secondary__filled">
+          Cancel
+        </button>
         <button className="btn-primary__green">Submit</button>
       </div>
     </form>

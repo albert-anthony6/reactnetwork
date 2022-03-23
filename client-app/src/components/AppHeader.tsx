@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from '../assets/styles/AppHeader.module.scss';
 
-export default function AppHeader() {
+interface Props {
+  openForm: () => void;
+}
+
+export default function AppHeader({ openForm }: Props) {
   return (
     <header className={styles['app-header']}>
       <ul>
@@ -13,7 +17,9 @@ export default function AppHeader() {
           <a href="#">Activities</a>
         </li>
         <li>
-          <div className="btn-primary__green">Create Activity</div>
+          <div onClick={openForm} className="btn-primary__green">
+            Create Activity
+          </div>
         </li>
       </ul>
     </header>
