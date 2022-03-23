@@ -4,9 +4,13 @@ import styles from '../assets/styles/ActivityDetails.module.scss';
 
 interface Props {
   activity: Activity;
+  cancelSelectActivity: () => void;
 }
 
-export default function ActivityDetails({ activity }: Props) {
+export default function ActivityDetails({
+  activity,
+  cancelSelectActivity,
+}: Props) {
   return (
     <div className={styles['activity-details']}>
       <img
@@ -19,7 +23,12 @@ export default function ActivityDetails({ activity }: Props) {
         <p>{activity.description}</p>
         <div className={styles['action-btns']}>
           <div className={`${styles['edit']} btn-secondary`}>Edit</div>
-          <div className={`${styles['cancel']} btn-secondary`}>Cancel</div>
+          <div
+            onClick={cancelSelectActivity}
+            className={`${styles['cancel']} btn-secondary`}
+          >
+            Cancel
+          </div>
         </div>
       </div>
     </div>

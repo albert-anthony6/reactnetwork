@@ -6,21 +6,36 @@ import ActivityDashboard from './components/ActivityDashboard';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [selectedActivity, setSelectedActivity] = useState<
+    Activity | undefined
+  >(undefined);
 
   useEffect(() => {
     axios
       .get<Activity[]>('http://localhost:5000/api/activities')
       .then((resp) => {
-        console.log(resp);
         setActivities(resp.data);
       });
   }, []);
+
+  function handleSelectActivity(id: string) {
+    setSelectedActivity(activities.find((activity) => activity.id === id));
+  }
+
+  function handleCancelSelectActivity() {
+    setSelectedActivity(undefined);
+  }
 
   return (
     <Fragment>
       <AppHeader />
       <main>
-        <ActivityDashboard activities={activities} />
+        <ActivityDashboard
+          activities={activities}
+          selectedActivity={selectedActivity}
+          selectActivity={handleSelectActivity}
+          cancelSelectActivity={handleCancelSelectActivity}
+        />
       </main>
     </Fragment>
   );

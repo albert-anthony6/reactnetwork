@@ -4,9 +4,10 @@ import styles from '../assets/styles/ActivityList.module.scss';
 
 interface Props {
   activities: Activity[];
+  selectActivity: (id: string) => void;
 }
 
-export default function ActivityList({ activities }: Props) {
+export default function ActivityList({ activities, selectActivity }: Props) {
   return (
     <div className={styles['activity-list']}>
       {activities.map((activity) => (
@@ -19,7 +20,12 @@ export default function ActivityList({ activities }: Props) {
             <div className={`${styles['category']} btn-secondary`}>
               {activity.category}
             </div>
-            <div className="btn-primary__blue">View</div>
+            <div
+              onClick={() => selectActivity(activity.id)}
+              className="btn-primary__blue"
+            >
+              View
+            </div>
           </div>
         </div>
       ))}
