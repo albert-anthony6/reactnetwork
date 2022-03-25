@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Activity } from './models/activity';
 import AppHeader from './components/AppHeader';
 import ActivityDashboard from './components/ActivityDashboard';
+import Loader from './components/Loader';
 import agent from './api/agent';
 import { v4 as uuid } from 'uuid';
 
@@ -11,6 +12,7 @@ function App() {
     Activity | undefined
   >(undefined);
   const [editMode, setEditMode] = useState(false);
+  const [loading, setloading] = useState(true);
 
   useEffect(() => {
     agent.Activities.list().then((response) => {
@@ -21,6 +23,7 @@ function App() {
         activities.push(activity);
       });
       setActivities(activities);
+      setloading(false);
     });
   }, []);
 
@@ -55,6 +58,8 @@ function App() {
   function handleDeleteActivity(id: string) {
     setActivities([...activities.filter((activity) => activity.id !== id)]);
   }
+
+  if (loading) return <Loader />;
 
   return (
     <Fragment>
