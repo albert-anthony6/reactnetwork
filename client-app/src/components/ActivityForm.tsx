@@ -66,7 +66,7 @@ export default function ActivityForm({
         onChange={handleInputChange}
       />
       <input
-        type="text"
+        type="date"
         placeholder="Date"
         value={activity.date}
         name="date"

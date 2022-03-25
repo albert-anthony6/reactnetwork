@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import axios from 'axios';
 import { Activity } from './models/activity';
 import AppHeader from './components/AppHeader';
 import ActivityDashboard from './components/ActivityDashboard';
+import agent from './api/agent';
 import { v4 as uuid } from 'uuid';
 
 function App() {
@@ -13,11 +13,15 @@ function App() {
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
-    axios
-      .get<Activity[]>('http://localhost:5000/api/activities')
-      .then((resp) => {
-        setActivities(resp.data);
+    agent.Activities.list().then((response) => {
+      let activities: Activity[] = [];
+      // Remocing the time portion of the activity date
+      response.forEach((activity) => {
+        activity.date = activity.date.split('T')[0];
+        activities.push(activity);
       });
+      setActivities(activities);
+    });
   }, []);
 
   function handleSelectActivity(id: string) {
