@@ -34,6 +34,31 @@
   }
 }
 
+.inline-loader-container {
+  position: relative;
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 2px solid #ffffff50;
+      border-left: 2px solid #fff;
+      transform: translateZ(0);
+      animation: load 0.5s linear infinite;
+    }
+  }
+  p {
+    opacity: 0;
+  }
+}
+
 @keyframes load {
   0% {
     transform: rotate(0);

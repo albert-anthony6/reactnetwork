@@ -1,17 +1,20 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Activity } from '../models/activity';
+import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityForm.module.scss';
 
 interface Props {
   activity: Activity | undefined;
   closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
+  submitting: boolean;
 }
 
 export default function ActivityForm({
   activity: selectedActivity,
   closeForm,
   createOrEdit,
+  submitting,
 }: Props) {
   const initialState = selectedActivity ?? {
     id: '',
@@ -90,7 +93,10 @@ export default function ActivityForm({
         <button onClick={closeForm} className="btn-secondary__filled">
           Cancel
         </button>
-        <button className="btn-primary__green">Submit</button>
+        <button className="btn-primary__green">
+          {!submitting && <span>Submit</span>}
+          {submitting && <Loader inline={true} content="Submit" />}
+        </button>
       </div>
     </form>
   );
