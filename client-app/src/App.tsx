@@ -5,8 +5,12 @@ import ActivityDashboard from './components/ActivityDashboard';
 import Loader from './components/Loader';
 import agent from './api/agent';
 import { v4 as uuid } from 'uuid';
+import { useStore } from './stores';
+import { observer } from 'mobx-react-lite';
 
 function App() {
+  const { activityStore } = useStore();
+
   const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<
     Activity | undefined
@@ -83,6 +87,8 @@ function App() {
   return (
     <Fragment>
       <AppHeader openForm={handleFormOpen} />
+      <h2>{activityStore.title}</h2>
+      <button onClick={activityStore.setTitle}>Add exclamation!!</button>
       <main>
         <ActivityDashboard
           activities={activities}
@@ -101,4 +107,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
