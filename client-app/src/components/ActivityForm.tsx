@@ -2,20 +2,19 @@ import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Activity } from '../models/activity';
 import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityForm.module.scss';
+import { useStore } from '../stores';
+import { observer } from 'mobx-react-lite';
 
-interface Props {
-  activity: Activity | undefined;
-  closeForm: () => void;
-  createOrEdit: (activity: Activity) => void;
-  submitting: boolean;
-}
+export default observer(function ActivityForm() {
+  const { activityStore } = useStore();
+  const {
+    selectedActivity,
+    closeForm,
+    createActivity,
+    updateActivity,
+    loading,
+  } = activityStore;
 
-export default function ActivityForm({
-  activity: selectedActivity,
-  closeForm,
-  createOrEdit,
-  submitting,
-}: Props) {
   const initialState = selectedActivity ?? {
     id: '',
     title: '',
@@ -30,7 +29,7 @@ export default function ActivityForm({
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    createOrEdit(activity);
+    activity.id ? updateActivity(activity) : createActivity(activity);
   }
 
   function handleInputChange(
@@ -90,14 +89,20 @@ export default function ActivityForm({
         onChange={handleInputChange}
       />
       <div className={styles['form-buttons']}>
-        <button onClick={closeForm} className="btn-secondary__filled">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            closeForm();
+          }}
+          className="btn-secondary__filled"
+        >
           Cancel
         </button>
         <button className="btn-primary__green">
-          {!submitting && <span>Submit</span>}
-          {submitting && <Loader inline={true} content="Submit" />}
+          {!loading && <span>Submit</span>}
+          {loading && <Loader inline={true} content="Submit" />}
         </button>
       </div>
     </form>
   );
-}
+});

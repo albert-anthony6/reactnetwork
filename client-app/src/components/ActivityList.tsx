@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Activity } from '../models/activity';
 import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityList.module.scss';
+import { useStore } from '../stores';
+import { observer } from 'mobx-react-lite';
 
-interface Props {
-  activities: Activity[];
-  selectActivity: (id: string) => void;
-  deleteActivity: (id: string) => void;
-  submitting: boolean;
-}
+export default observer(function ActivityList() {
+  const { activityStore } = useStore();
+  const { deleteActivity, activitiesByDate, loading } = activityStore;
 
-export default function ActivityList({
-  activities,
-  selectActivity,
-  deleteActivity,
-  submitting,
-}: Props) {
   const [target, setTarget] = useState('');
 
   useEffect(() => {
@@ -31,7 +23,7 @@ export default function ActivityList({
 
   return (
     <div className={styles['activity-list']}>
-      {activities.map((activity) => (
+      {activitiesByDate.map((activity) => (
         <div className={styles['item']} key={activity.id}>
           <h5>{activity.title}</h5>
           <p className={styles['date']}>{activity.date}</p>
@@ -43,7 +35,7 @@ export default function ActivityList({
             </div>
             <div className={styles['action-btns']}>
               <div
-                onClick={() => selectActivity(activity.id)}
+                onClick={() => activityStore.selectActivity(activity.id)}
                 className={`btn-primary__blue ${styles['view']}`}
               >
                 View
@@ -52,10 +44,10 @@ export default function ActivityList({
                 onClick={() => handleActivityDelete(activity.id)}
                 className="btn-primary__red"
               >
-                {(!submitting || (submitting && target !== activity.id)) && (
+                {(!loading || (loading && target !== activity.id)) && (
                   <span>Delete</span>
                 )}
-                {submitting && target === activity.id && (
+                {loading && target === activity.id && (
                   <Loader inline={true} content="Delete" />
                 )}
               </div>
@@ -65,4 +57,4 @@ export default function ActivityList({
       ))}
     </div>
   );
-}
+});

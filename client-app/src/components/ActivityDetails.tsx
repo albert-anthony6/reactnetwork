@@ -1,18 +1,18 @@
 import React from 'react';
-import { Activity } from '../models/activity';
+import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityDetails.module.scss';
+import { useStore } from '../stores';
 
-interface Props {
-  activity: Activity;
-  cancelSelectActivity: () => void;
-  openForm: (id: string) => void;
-}
+export default function ActivityDetails() {
+  const { activityStore } = useStore();
+  const {
+    selectedActivity: activity,
+    openForm,
+    cancelSelectedActivity,
+  } = activityStore;
 
-export default function ActivityDetails({
-  activity,
-  cancelSelectActivity,
-  openForm,
-}: Props) {
+  if (!activity) return <Loader />;
+
   return (
     <div className={styles['activity-details']}>
       <img
@@ -31,7 +31,7 @@ export default function ActivityDetails({
             Edit
           </div>
           <div
-            onClick={cancelSelectActivity}
+            onClick={cancelSelectedActivity}
             className={`${styles['cancel']} btn-secondary`}
           >
             Cancel

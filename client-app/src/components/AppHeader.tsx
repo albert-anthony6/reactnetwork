@@ -1,11 +1,10 @@
 import React from 'react';
+import { useStore } from '../stores';
 import styles from '../assets/styles/AppHeader.module.scss';
 
-interface Props {
-  openForm: () => void;
-}
+export default function AppHeader() {
+  const { activityStore } = useStore();
 
-export default function AppHeader({ openForm }: Props) {
   return (
     <header className={styles['app-header']}>
       <ul>
@@ -17,7 +16,10 @@ export default function AppHeader({ openForm }: Props) {
           <a href="#">Activities</a>
         </li>
         <li>
-          <div onClick={openForm} className="btn-primary__green">
+          <div
+            onClick={() => activityStore.openForm()}
+            className="btn-primary__green"
+          >
             Create Activity
           </div>
         </li>
