@@ -1,26 +1,21 @@
-import React, { Fragment, useEffect } from 'react';
+import React from 'react';
 import AppHeader from './components/AppHeader';
 import ActivityDashboard from './components/ActivityDashboard';
-import Loader from './components/Loader';
-import { useStore } from './stores';
+import Home from './views/Home';
 import { observer } from 'mobx-react-lite';
+import { Route } from 'react-router-dom';
+import ActivityForm from './components/ActivityForm';
 
 function App() {
-  const { activityStore } = useStore();
-
-  useEffect(() => {
-    activityStore.loadActivities();
-  }, [activityStore]);
-
-  if (activityStore.loadingInitial) return <Loader />;
-
   return (
-    <Fragment>
+    <>
       <AppHeader />
       <main>
-        <ActivityDashboard />
+        <Route exact path="/" component={Home} />
+        <Route path="/activities" component={ActivityDashboard} />
+        <Route path="/create-activities" component={ActivityForm} />
       </main>
-    </Fragment>
+    </>
   );
 }
 
