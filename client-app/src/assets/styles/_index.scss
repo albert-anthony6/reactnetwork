@@ -24,7 +24,10 @@ body {
     text-decoration: none;
     color: inherit;
   }
-
+  .nav--link,
+  .nav--link__activities {
+    background-color: rgba($blue-hover, 0.5) !important;
+  }
   h5 {
     @include font-size(rem(22), bold, capitalize, 1.25);
   }

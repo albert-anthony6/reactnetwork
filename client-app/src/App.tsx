@@ -13,7 +13,7 @@ function App() {
       <main>
         <Route exact path="/" component={Home} />
         <Route path="/activities" component={ActivityDashboard} />
-        <Route path="/create-activities" component={ActivityForm} />
+        <Route path="/create-activity" component={ActivityForm} />
       </main>
     </>
   );

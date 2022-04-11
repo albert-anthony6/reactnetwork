@@ -15,11 +15,25 @@
     #218aae 69%,
     #20a7ac 89%
   );
+  .logo {
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    border-right: 1px solid rgba($divider, 0.5);
+    img {
+      width: 30px;
+      margin-right: 15px;
+    }
+    h2 {
+      @include font-size(rem(15), bold, capitalize, 1.25);
+    }
+  }
   ul {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    height: 40px;
+    height: 60px;
     li {
       @include font-size(rem(13), 500, capitalize, 1.25);
 
@@ -27,20 +41,23 @@
       align-items: center;
       justify-content: center;
       height: 100%;
-      &:not(:first-of-type) {
+      .logo,
+      .activities {
         padding: 0 15px;
-        border-left: 1px solid $divider;
+        transition: background-color 0.2s ease;
+        &:hover {
+          background-color: rgba($blue-hover, 0.3);
+        }
       }
-    }
-  }
-  .logo {
-    padding-right: 15px;
-    img {
-      width: 30px;
-      margin-right: 15px;
-    }
-    h2 {
-      @include font-size(rem(15), bold, capitalize, 1.25);
+      .activities {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+      &:last-of-type {
+        padding: 0 15px;
+        border-left: 1px solid rgba($divider, 0.5);
+      }
     }
   }
 }
