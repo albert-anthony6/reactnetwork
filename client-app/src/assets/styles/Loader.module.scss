@@ -20,7 +20,7 @@
       border: 12px solid #ffffff33;
       border-left: 12px solid #fff;
       transform: translateZ(0);
-      animation: load 1.2s linear infinite;
+      animation: load 0.8s linear infinite;
     }
     p {
       @include font-size(rem(22), bold, uppercase, 2.25);

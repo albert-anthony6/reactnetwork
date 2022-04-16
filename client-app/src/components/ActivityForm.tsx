@@ -3,9 +3,11 @@ import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityForm.module.scss';
 import { useStore } from '../stores';
 import { observer } from 'mobx-react-lite';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
 export default observer(function ActivityForm() {
+  const history = useHistory();
   const { activityStore } = useStore();
   const {
     createActivity,
@@ -32,7 +34,20 @@ export default observer(function ActivityForm() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    activity.id ? updateActivity(activity) : createActivity(activity);
+    if (activity.id.length === 0) {
+      // Creating a new id for the new activity object
+      let newActivity = {
+        ...activity,
+        id: uuid(),
+      };
+      createActivity(newActivity).then(() =>
+        history.push(`/activities/${newActivity.id}`)
+      );
+    } else {
+      updateActivity(activity).then(() =>
+        history.push(`/activities/${activity.id}`)
+      );
+    }
   }
 
   function handleInputChange(
