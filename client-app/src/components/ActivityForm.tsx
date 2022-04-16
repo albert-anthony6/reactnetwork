@@ -3,7 +3,7 @@ import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityForm.module.scss';
 import { useStore } from '../stores';
 import { observer } from 'mobx-react-lite';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
 export default observer(function ActivityForm() {
@@ -109,7 +109,9 @@ export default observer(function ActivityForm() {
         onChange={handleInputChange}
       />
       <div className={styles['form-buttons']}>
-        <button className="btn-secondary__filled">Cancel</button>
+        <Link to="/activities">
+          <button className="btn-secondary__filled">Cancel</button>
+        </Link>
         <button className="btn-primary__green">
           {!loading && <span>Submit</span>}
           {loading && <Loader inline={true} content="Submit" />}

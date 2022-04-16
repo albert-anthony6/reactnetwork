@@ -7,10 +7,11 @@ import { observer } from 'mobx-react-lite';
 
 export default observer(function ActivityDashboard() {
   const { activityStore } = useStore();
+  const { loadActivities, activityRegistry } = activityStore;
 
   useEffect(() => {
-    activityStore.loadActivities();
-  }, [activityStore]);
+    if (activityRegistry.size <= 1) loadActivities();
+  }, [loadActivities, activityRegistry.size]);
 
   if (activityStore.loadingInitial) return <Loader />;
 
