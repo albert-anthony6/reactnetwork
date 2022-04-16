@@ -3,6 +3,7 @@ import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityList.module.scss';
 import { useStore } from '../stores';
 import { observer } from 'mobx-react-lite';
+import { Link } from 'react-router-dom';
 
 export default observer(function ActivityList() {
   const { activityStore } = useStore();
@@ -30,17 +31,16 @@ export default observer(function ActivityList() {
           <p>{activity.description}</p>
           <p>{activity.venue}</p>
           <div className={styles['list-bottom']}>
-            <div className={`${styles['category']} btn-secondary`}>
+            <span className={`${styles['category']} btn-secondary`}>
               {activity.category}
-            </div>
+            </span>
             <div className={styles['action-btns']}>
-              <div
-                onClick={() => activityStore.selectActivity(activity.id)}
-                className={`btn-primary__blue ${styles['view']}`}
-              >
-                View
-              </div>
-              <div
+              <Link to={`/activities/${activity.id}`}>
+                <span className={`btn-primary__blue ${styles['view']}`}>
+                  View
+                </span>
+              </Link>
+              <span
                 onClick={() => handleActivityDelete(activity.id)}
                 className="btn-primary__red"
               >
@@ -50,7 +50,7 @@ export default observer(function ActivityList() {
                 {loading && target === activity.id && (
                   <Loader inline={true} content="Delete" />
                 )}
-              </div>
+              </span>
             </div>
           </div>
         </div>

@@ -1,11 +1,8 @@
 import React from 'react';
-import { useStore } from '../stores';
 import { NavLink } from 'react-router-dom';
 import styles from '../assets/styles/AppHeader.module.scss';
 
 export default function AppHeader() {
-  const { activityStore } = useStore();
-
   return (
     <header className={styles['app-header']}>
       <ul>
@@ -32,7 +29,6 @@ export default function AppHeader() {
         <li>
           <NavLink
             to="/create-activity"
-            onClick={() => activityStore.openForm()}
             className="btn-primary__green"
             activeClassName=""
           >

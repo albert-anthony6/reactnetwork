@@ -5,6 +5,7 @@ import Home from './views/Home';
 import { observer } from 'mobx-react-lite';
 import { Route } from 'react-router-dom';
 import ActivityForm from './components/ActivityForm';
+import ActivityDetails from './components/ActivityDetails';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <AppHeader />
       <main>
         <Route exact path="/" component={Home} />
-        <Route path="/activities" component={ActivityDashboard} />
+        <Route exact path="/activities" component={ActivityDashboard} />
+        <Route path="/activities/:id" component={ActivityDetails} />
         <Route path="/create-activity" component={ActivityForm} />
       </main>
     </>

@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { Activity } from '../models/activity';
 import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityForm.module.scss';
 import { useStore } from '../stores';
@@ -7,13 +6,8 @@ import { observer } from 'mobx-react-lite';
 
 export default observer(function ActivityForm() {
   const { activityStore } = useStore();
-  const {
-    selectedActivity,
-    closeForm,
-    createActivity,
-    updateActivity,
-    loading,
-  } = activityStore;
+  const { selectedActivity, createActivity, updateActivity, loading } =
+    activityStore;
 
   const initialState = selectedActivity ?? {
     id: '',
@@ -89,15 +83,7 @@ export default observer(function ActivityForm() {
         onChange={handleInputChange}
       />
       <div className={styles['form-buttons']}>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            closeForm();
-          }}
-          className="btn-secondary__filled"
-        >
-          Cancel
-        </button>
+        <button className="btn-secondary__filled">Cancel</button>
         <button className="btn-primary__green">
           {!loading && <span>Submit</span>}
           {loading && <Loader inline={true} content="Submit" />}

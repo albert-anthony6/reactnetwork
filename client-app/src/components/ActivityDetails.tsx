@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityDetails.module.scss';
 import { useStore } from '../stores';
+import { useParams } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 
-export default function ActivityDetails() {
+export default observer(function ActivityDetails() {
   const { activityStore } = useStore();
   const {
     selectedActivity: activity,
-    openForm,
-    cancelSelectedActivity,
+    loadActivity,
+    loadingInitial,
   } = activityStore;
+  const { id } = useParams<{ id: string }>();
 
-  if (!activity) return <Loader />;
+  useEffect(() => {
+    if (id) loadActivity(id);
+  }, [id, loadActivity]);
+
+  if (loadingInitial || !activity) return <Loader />;
 
   return (
     <div className={styles['activity-details']}>
@@ -24,20 +31,10 @@ export default function ActivityDetails() {
         <p className={styles['date']}>{activity.date}</p>
         <p>{activity.description}</p>
         <div className={styles['action-btns']}>
-          <div
-            onClick={() => openForm(activity.id)}
-            className={`${styles['edit']} btn-secondary`}
-          >
-            Edit
-          </div>
-          <div
-            onClick={cancelSelectedActivity}
-            className={`${styles['cancel']} btn-secondary`}
-          >
-            Cancel
-          </div>
+          <span className={`${styles['edit']} btn-secondary`}>Edit</span>
+          <span className={`${styles['cancel']} btn-secondary`}>Cancel</span>
         </div>
       </div>
     </div>
   );
-}
+});
