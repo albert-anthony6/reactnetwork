@@ -1,15 +1,22 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityForm.module.scss';
 import { useStore } from '../stores';
 import { observer } from 'mobx-react-lite';
+import { useParams } from 'react-router-dom';
 
 export default observer(function ActivityForm() {
   const { activityStore } = useStore();
-  const { selectedActivity, createActivity, updateActivity, loading } =
-    activityStore;
+  const {
+    createActivity,
+    updateActivity,
+    loading,
+    loadActivity,
+    loadingInitial,
+  } = activityStore;
+  const { id } = useParams<{ id: string }>();
 
-  const initialState = selectedActivity ?? {
+  const [activity, setActivity] = useState({
     id: '',
     title: '',
     category: '',
@@ -17,9 +24,11 @@ export default observer(function ActivityForm() {
     date: '',
     city: '',
     venue: '',
-  };
+  });
 
-  const [activity, setActivity] = useState(initialState);
+  useEffect(() => {
+    if (id) loadActivity(id).then((activity) => setActivity(activity!));
+  }, [id, loadActivity]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -32,6 +41,8 @@ export default observer(function ActivityForm() {
     const { name, value } = event.target;
     setActivity({ ...activity, [name]: value });
   }
+
+  if (loadingInitial) return <Loader />;
 
   return (
     <form

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityDetails.module.scss';
 import { useStore } from '../stores';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
 export default observer(function ActivityDetails() {
@@ -31,8 +31,12 @@ export default observer(function ActivityDetails() {
         <p className={styles['date']}>{activity.date}</p>
         <p>{activity.description}</p>
         <div className={styles['action-btns']}>
-          <span className={`${styles['edit']} btn-secondary`}>Edit</span>
-          <span className={`${styles['cancel']} btn-secondary`}>Cancel</span>
+          <Link to={`/manage/${activity.id}`}>
+            <span className={`${styles['edit']} btn-secondary`}>Edit</span>
+          </Link>
+          <Link to="/activities">
+            <span className={`${styles['cancel']} btn-secondary`}>Cancel</span>
+          </Link>
         </div>
       </div>
     </div>
