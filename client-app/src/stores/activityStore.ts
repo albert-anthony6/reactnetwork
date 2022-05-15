@@ -21,6 +21,19 @@ export default class ActivityStore {
     );
   }
 
+  get groupedActivities() {
+    // Returns back an array of arrays which are grouped by date and activities
+    return Object.entries(
+      this.activitiesByDate.reduce((activities, activity) => {
+        const date = activity.date;
+        activities[date] = activities[date]
+          ? [...activities[date], activity]
+          : [activity];
+        return activities;
+      }, {} as { [key: string]: Activity[] })
+    );
+  }
+
   // Actions
   loadActivities = async () => {
     this.setLoadingInitial(true);

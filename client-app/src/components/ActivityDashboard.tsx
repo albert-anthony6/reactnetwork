@@ -13,11 +13,14 @@ export default observer(function ActivityDashboard() {
     if (activityRegistry.size <= 1) loadActivities();
   }, [loadActivities, activityRegistry.size]);
 
-  if (activityStore.loadingInitial) return <Loader />;
+  if (activityStore.loadingInitial)
+    return <Loader content="Loading Activities" />;
 
   return (
     <div className={styles['activity-dashboard']}>
-      <ActivityList />
+      <div className={styles['dashboard-left']}>
+        <ActivityList />
+      </div>
       <div className={styles['dashboard-right']}>
         <h2>Activity Filters</h2>
       </div>

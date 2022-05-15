@@ -110,9 +110,11 @@ export default observer(function ActivityForm() {
       />
       <div className={styles['form-buttons']}>
         <Link to="/activities">
-          <button className="btn-secondary__filled">Cancel</button>
+          <button className="btn-secondary btn-secondary__filled">
+            Cancel
+          </button>
         </Link>
-        <button className="btn-primary__green">
+        <button className="btn-primary btn-primary__green">
           {!loading && <span>Submit</span>}
           {loading && <Loader inline={true} content="Submit" />}
         </button>

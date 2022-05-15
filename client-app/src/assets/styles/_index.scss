@@ -38,12 +38,14 @@ code {
     monospace;
 }
 
+.subheader {
+  @include font-size(rem(13), bold, capitalize, 0.3);
+
+  color: $blue;
+}
+
 .btn-primary,
-.btn-primary__blue,
-.btn-primary__green,
-.btn-primary__red,
-.btn-secondary,
-.btn-secondary__filled {
+.btn-secondary {
   display: inline-block;
   cursor: pointer;
   background-color: $primary;
@@ -76,8 +78,7 @@ code {
   }
 }
 
-.btn-secondary,
-.btn-secondary__filled {
+.btn-secondary {
   padding: 7px 10px;
   background-color: transparent;
   border: 2px solid $grey;

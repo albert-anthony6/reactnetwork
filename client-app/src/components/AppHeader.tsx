@@ -29,7 +29,7 @@ export default function AppHeader() {
         <li>
           <NavLink
             to="/create-activity"
-            className="btn-primary__green"
+            className="btn-primary btn-primary__green"
             activeClassName=""
           >
             Create Activity

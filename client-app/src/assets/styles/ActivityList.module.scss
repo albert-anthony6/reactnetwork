@@ -1,9 +1,12 @@
 .activity-list {
   padding: 15px;
   background-color: $lightest-neutral;
-  width: 50%;
+  width: 100%;
   font-weight: 500;
   line-height: 23px;
+  margin: 15px 0 30px 0;
+  border-radius: 5px;
+  box-shadow: $card-shadow;
   .item {
     padding-bottom: 20px;
     &:not(:last-of-type) {
