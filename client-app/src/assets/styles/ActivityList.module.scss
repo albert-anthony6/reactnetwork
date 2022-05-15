@@ -1,38 +1,68 @@
 .activity-list {
-  padding: 15px;
-  background-color: $lightest-neutral;
   width: 100%;
-  font-weight: 500;
-  line-height: 23px;
   margin: 15px 0 30px 0;
-  border-radius: 5px;
-  box-shadow: $card-shadow;
+  .item-container {
+    font-weight: 500;
+    line-height: 23px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px 1px #0000001a;
+    background-color: $lightest-neutral;
+  }
   .item {
     padding-bottom: 20px;
     &:not(:last-of-type) {
       margin-bottom: 20px;
       border-bottom: 1px solid $divider;
     }
-    .date {
-      font-weight: 300;
-      margin: 7px 0;
+    .header {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      border-bottom: 1px solid $divider;
+      .user-image {
+        max-width: 80px;
+        border-radius: 50%;
+      }
+      &-content {
+        margin-left: 30px;
+      }
+    }
+    .info {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 10px 15px;
+      border-bottom: 1px solid $divider;
+      svg {
+        margin-right: 5px;
+      }
+      .date {
+        font-weight: 300;
+        margin: 7px 15px 7px 0;
+      }
+    }
+    .attendees {
+      padding: 10px 15px;
+      background-color: $light-neutral;
     }
     .list-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 15px;
-      .category {
-        cursor: default;
-        pointer-events: none;
-        border-width: 1px;
-        border-color: $divider;
-      }
-      .action-btns {
-        .view {
-          margin: 0 10px;
-        }
-      }
+      padding: 15px 15px 0 15px;
+      // .category {
+      //   cursor: default;
+      //   pointer-events: none;
+      //   border-width: 1px;
+      //   border-color: $divider;
+      // }
+      // .action-btns {
+      //   .view {
+      //     margin: 0 10px;
+      //   }
+      // }
     }
   }
 }

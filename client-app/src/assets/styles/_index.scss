@@ -41,7 +41,7 @@ code {
 .subheader {
   @include font-size(rem(13), bold, capitalize, 0.3);
 
-  color: $blue;
+  color: $teal;
 }
 
 .btn-primary,
@@ -59,6 +59,13 @@ code {
     color: $lightest-neutral;
     &:hover {
       background-color: $blue-hover;
+    }
+  }
+  &__teal {
+    background-color: $teal;
+    color: $lightest-neutral;
+    &:hover {
+      background-color: $teal-hover;
     }
   }
   &__red {

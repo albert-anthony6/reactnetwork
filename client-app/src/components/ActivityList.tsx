@@ -15,7 +15,9 @@ export default observer(function ActivityList() {
           <h5 className="subheader">{group}</h5>
           <div className={styles['activity-list']}>
             {activities.map((activity) => (
-              <ActivityListItem key={activity.id} activity={activity} />
+              <div className={styles['item-container']}>
+                <ActivityListItem key={activity.id} activity={activity} />
+              </div>
             ))}
           </div>
         </div>
