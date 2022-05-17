@@ -1,0 +1,35 @@
+.home {
+  background-image: linear-gradient(
+    135deg,
+    rgb(24, 42, 115) 0%,
+    rgb(33, 138, 174) 69%,
+    rgb(32, 167, 172) 89%
+  );
+  color: $lightest-neutral;
+  text-align: center;
+  height: 100vh;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: 0 auto 20px auto;
+    img {
+      width: 40px;
+      margin-top: 5px;
+    }
+    h2 {
+      @include font-size(rem(45), 300, capitalize, 1.25);
+
+      margin-left: 15px;
+    }
+  }
+
+  h5 {
+    margin-bottom: 15px;
+  }
+
+  a {
+    transform: scale(1.3);
+  }
+}

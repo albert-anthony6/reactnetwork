@@ -13,8 +13,11 @@ export default function AppHeader() {
             activeClassName="nav--link"
             to="/"
           >
-            <img src={require('../assets/images/logo.png')} alt="Logo." />
-            <h2>ReactNetwork</h2>
+            <img
+              src={require('../assets/images/logo.png')}
+              alt="React Network Logo."
+            />
+            <h1>ReactNetwork</h1>
           </NavLink>
         </li>
         <li>

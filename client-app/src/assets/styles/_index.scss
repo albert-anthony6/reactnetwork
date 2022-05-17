@@ -14,7 +14,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $light-neutral;
-  padding: 120px 10%;
 
   ul {
     list-style: none;
@@ -29,7 +28,10 @@ body {
     background-color: rgba($blue-hover, 0.5) !important;
   }
   h5 {
-    @include font-size(rem(22), bold, capitalize, 1.25);
+    @include font-size(rem(22), 500, capitalize, 1.25);
+  }
+  .page {
+    padding: 120px 10%;
   }
 }
 
@@ -102,6 +104,14 @@ code {
   padding: 7px 10px;
   background-color: transparent;
   border: 2px solid $grey;
+  &__white {
+    border: 2px solid $lightest-neutral;
+    &:hover {
+      border-color: $lightest-neutral;
+      background-color: $lightest-neutral;
+      color: #000;
+    }
+  }
   &__filled {
     border: none;
     background-color: $light-grey;

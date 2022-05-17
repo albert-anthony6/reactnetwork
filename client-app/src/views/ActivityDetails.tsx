@@ -25,7 +25,7 @@ export default observer(function ActivityDetails() {
   if (loadingInitial || !activity) return <Loader />;
 
   return (
-    <div className={styles['activity-details']}>
+    <div className={`page ${styles['activity-details']}`}>
       <div className={styles['left']}>
         <ActivityDetailedHeader activity={activity} />
         <ActivityDetailedInfo activity={activity} />

@@ -60,65 +60,67 @@ export default observer(function ActivityForm() {
   if (loadingInitial) return <Loader />;
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      autoComplete="off"
-      className={styles['activity-form']}
-    >
-      <input
-        type="text"
-        placeholder="Title"
-        value={activity.title}
-        name="title"
-        onChange={handleInputChange}
-      />
-      <textarea
-        id="description"
-        placeholder="Description"
-        rows={5}
-        value={activity.description}
-        name="description"
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        placeholder="Category"
-        value={activity.category}
-        name="category"
-        onChange={handleInputChange}
-      />
-      <input
-        type="date"
-        placeholder="Date"
-        value={activity.date}
-        name="date"
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        placeholder="City"
-        value={activity.city}
-        name="city"
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        placeholder="Venue"
-        value={activity.venue}
-        name="venue"
-        onChange={handleInputChange}
-      />
-      <div className={styles['form-buttons']}>
-        <Link to="/activities">
-          <button className="btn-secondary btn-secondary__filled">
-            Cancel
+    <div className="page">
+      <form
+        onSubmit={handleSubmit}
+        autoComplete="off"
+        className={styles['activity-form']}
+      >
+        <input
+          type="text"
+          placeholder="Title"
+          value={activity.title}
+          name="title"
+          onChange={handleInputChange}
+        />
+        <textarea
+          id="description"
+          placeholder="Description"
+          rows={5}
+          value={activity.description}
+          name="description"
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          placeholder="Category"
+          value={activity.category}
+          name="category"
+          onChange={handleInputChange}
+        />
+        <input
+          type="date"
+          placeholder="Date"
+          value={activity.date}
+          name="date"
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          placeholder="City"
+          value={activity.city}
+          name="city"
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          placeholder="Venue"
+          value={activity.venue}
+          name="venue"
+          onChange={handleInputChange}
+        />
+        <div className={styles['form-buttons']}>
+          <Link to="/activities">
+            <button className="btn-secondary btn-secondary__filled">
+              Cancel
+            </button>
+          </Link>
+          <button className="btn-primary btn-primary__green">
+            {!loading && <span>Submit</span>}
+            {loading && <Loader inline={true} content="Submit" />}
           </button>
-        </Link>
-        <button className="btn-primary btn-primary__green">
-          {!loading && <span>Submit</span>}
-          {loading && <Loader inline={true} content="Submit" />}
-        </button>
-      </div>
-    </form>
+        </div>
+      </form>
+    </div>
   );
 });

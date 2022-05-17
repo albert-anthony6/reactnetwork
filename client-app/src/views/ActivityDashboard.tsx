@@ -18,7 +18,7 @@ export default observer(function ActivityDashboard() {
     return <Loader content="Loading Activities" />;
 
   return (
-    <div className={styles['activity-dashboard']}>
+    <div className={`page ${styles['activity-dashboard']}`}>
       <div className={styles['dashboard-left']}>
         <ActivityList />
       </div>
