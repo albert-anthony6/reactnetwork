@@ -1,0 +1,65 @@
+.activity-detailed-sidebar {
+  border-radius: 5px;
+  background-color: $lightest-neutral;
+  box-shadow: $card-shadow-2;
+  .header {
+    text-align: center;
+    font-weight: 500;
+    padding: 10px;
+    background-color: $teal;
+    color: $lightest-neutral;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .content {
+    padding: 15px;
+    .people-container {
+      position: relative;
+      display: flex;
+      &:not(:first-of-type) {
+        margin-top: 15px;
+      }
+      .host {
+        @include font-size(rem(14), bold, capitalize, 0.3);
+
+        position: absolute;
+        top: 0;
+        right: -35px;
+        padding: 10px 40px 10px 10px;
+        align-items: center;
+        color: $lightest-neutral;
+        background-color: $orange;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 39px;
+          right: 0;
+          width: 20px;
+          height: 20px;
+          background-color: $orange-hover;
+          transform: rotate(90deg);
+          clip-path: polygon(0 0, 100% 100%, 0 100%);
+        }
+      }
+      img {
+        width: 80px;
+        height: 80px;
+      }
+      .person {
+        margin-left: 15px;
+        .name {
+          @include font-size(rem(18), bold, capitalize, 0.3);
+
+          color: $blue;
+        }
+        .following {
+          @include font-size(rem(13), bold, capitalize, 0.3);
+
+          color: $yellow;
+        }
+      }
+    }
+  }
+}

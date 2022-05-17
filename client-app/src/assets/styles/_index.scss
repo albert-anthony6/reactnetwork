@@ -44,6 +44,12 @@ code {
   color: $teal;
 }
 
+.helper-text {
+  @include font-size(rem(11), 500, capitalize, 0.3);
+
+  color: $grey;
+}
+
 .btn-primary,
 .btn-secondary {
   display: inline-block;
@@ -75,6 +81,13 @@ code {
       background-color: $red-hover;
     }
   }
+  &__orange {
+    background-color: $orange;
+    color: $lightest-neutral;
+    &:hover {
+      background-color: $orange-hover;
+    }
+  }
   &__green {
     padding: 7px 10px;
     background-color: $green;
@@ -93,4 +106,10 @@ code {
     border: none;
     background-color: $light-grey;
   }
+}
+
+.react-calendar {
+  width: 100% !important;
+  border: none !important;
+  box-shadow: $card-shadow-2;
 }

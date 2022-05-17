@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Loader from '../components/Loader';
-import styles from '../assets/styles/ActivityList.module.scss';
+import Loader from '../../components/Loader';
+import styles from '../../assets/styles/ActivityList.module.scss';
 import { Link } from 'react-router-dom';
-import { Activity } from '../models/activity';
-import { useStore } from '../stores';
+import { Activity } from '../../models/activity';
+import { useStore } from '../../stores';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faLocationPin } from '@fortawesome/free-solid-svg-icons';
 
@@ -32,7 +32,7 @@ export default function ActivityListItem({ activity }: Props) {
     <div className={styles['item']}>
       <div className={styles['header']}>
         <img
-          src={require('../assets/images/user.png')}
+          src={require('../../assets/images/user.png')}
           className={styles['user-image']}
           alt="User profile."
         />

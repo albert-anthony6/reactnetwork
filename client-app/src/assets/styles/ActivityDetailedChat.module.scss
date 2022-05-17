@@ -1,0 +1,61 @@
+.activity-detailed-chat {
+  margin-top: 30px;
+  border-radius: 5px;
+  background-color: $lightest-neutral;
+  box-shadow: $card-shadow-2;
+  .header {
+    text-align: center;
+    font-weight: 500;
+    padding: 10px;
+    background-color: $teal;
+    color: $lightest-neutral;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .content {
+    padding: 15px;
+    .comment-container {
+      display: flex;
+      &:not(:first-of-type) {
+        margin-top: 15px;
+      }
+      img {
+        width: 40px;
+        height: 40px;
+      }
+      .comment {
+        margin-left: 15px;
+        margin-top: -3px;
+        .name-container {
+          display: flex;
+          align-items: center;
+          .name {
+            font-weight: 500;
+            margin-right: 10px;
+          }
+        }
+        .reply {
+          @include font-size(rem(13), bold, capitalize, 0.3);
+
+          cursor: pointer;
+          color: $grey;
+          display: inline-block;
+        }
+      }
+    }
+    textarea {
+      width: 100%;
+      margin: 15px 0;
+      resize: none;
+      border: 2px solid $divider;
+      &:focus {
+        outline: none;
+      }
+    }
+    .reply {
+      svg {
+        margin-left: -5px;
+      }
+    }
+  }
+}

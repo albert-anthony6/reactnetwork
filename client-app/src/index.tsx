@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/styles/_index.scss';
+import 'react-calendar/dist/Calendar.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store, StoreContext } from './stores';

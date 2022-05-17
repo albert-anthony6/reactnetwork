@@ -1,0 +1,29 @@
+.activity-detailed-header {
+  position: relative;
+  background-color: $lightest-neutral;
+  border-radius: 5px;
+  box-shadow: $card-shadow-2;
+  img {
+    filter: brightness(30%);
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .content {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    padding-left: 50px;
+    width: 100%;
+    color: $lightest-neutral;
+  }
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    .join {
+      margin-right: 10px;
+    }
+  }
+}

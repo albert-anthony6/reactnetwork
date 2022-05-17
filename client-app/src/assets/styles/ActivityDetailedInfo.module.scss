@@ -1,0 +1,27 @@
+.activity-detailed-info {
+  margin-top: 30px;
+  box-shadow: $card-shadow-2;
+  .info-row {
+    padding: 15px;
+    background-color: $lightest-neutral;
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $divider;
+    }
+    &:first-of-type {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      padding-left: 20px;
+    }
+    &:last-of-type {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+    svg {
+      margin-right: 15px;
+      transform: scale(1.1);
+      path {
+        fill: $teal;
+      }
+    }
+  }
+}

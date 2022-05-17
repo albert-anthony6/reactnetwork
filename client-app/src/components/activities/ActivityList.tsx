@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import styles from '../assets/styles/ActivityList.module.scss';
-import { useStore } from '../stores';
+import styles from '../../assets/styles/ActivityList.module.scss';
+import { useStore } from '../../stores';
 import { observer } from 'mobx-react-lite';
 import ActivityListItem from './ActivityListItem';
 

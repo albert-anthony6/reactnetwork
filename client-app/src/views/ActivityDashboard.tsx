@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import ActivityList from './ActivityList';
+import ActivityList from '../components/activities/ActivityList';
+import ActivityFilters from '../components/activities/ActivityFilters';
 import styles from '../assets/styles/ActivityDashboard.module.scss';
 import Loader from '../components/Loader';
 import { useStore } from '../stores';
@@ -22,7 +23,7 @@ export default observer(function ActivityDashboard() {
         <ActivityList />
       </div>
       <div className={styles['dashboard-right']}>
-        <h2>Activity Filters</h2>
+        <ActivityFilters />
       </div>
     </div>
   );
