@@ -1,0 +1,9 @@
+.validation-errors {
+    margin-top: 30px;
+    .error-list {
+        padding: 15px;
+        background-color: $error;
+        border: 1px solid $red;
+        color: $error-text;
+    }
+}
