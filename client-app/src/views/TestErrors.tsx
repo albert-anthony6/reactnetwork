@@ -31,14 +31,16 @@ export default function TestErrors() {
 
     return (
         <div className={`page ${styles['test-errors']}`}>
-            <h1>Test Error component</h1>
-            <div className={styles['button-group']}>
-                <span onClick={handleNotFound} className="btn-secondary">Not Found</span>
-                <span onClick={handleBadRequest} className="btn-secondary">Bad Request</span>
-                <span onClick={handleValidationError} className="btn-secondary">Validation Error</span>
-                <span onClick={handleServerError} className="btn-secondary">Server Error</span>
-                <span onClick={handleUnauthorised} className="btn-secondary">Unauthorized</span>
-                <span onClick={handleBadGuid} className="btn-secondary">Bad Guid</span>
+            <div className={styles["content"]}>
+                <h1>Test Error component</h1>
+                <div className={styles['button-group']}>
+                    <span onClick={handleNotFound} className="btn-secondary">Not Found</span>
+                    <span onClick={handleBadRequest} className="btn-secondary">Bad Request</span>
+                    <span onClick={handleValidationError} className="btn-secondary">Validation Error</span>
+                    <span onClick={handleServerError} className="btn-secondary">Server Error</span>
+                    <span onClick={handleUnauthorised} className="btn-secondary">Unauthorized</span>
+                    <span onClick={handleBadGuid} className="btn-secondary">Bad Guid</span>
+                </div>
             </div>
         </div>
     )

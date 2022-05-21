@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
+import { history } from '../index';
 import { Activity } from '../models/activity';
 
 // This will help simulate live production loading times
@@ -24,7 +25,7 @@ axios.interceptors.response.use(async (response) => {
       toast.error('unauthorized');
       break;
     case 404:
-      toast.error('not found');
+      history.push('/not-found');
       break;
     case 500:
       toast.error('server error');

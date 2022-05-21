@@ -1,23 +1,26 @@
 .test-errors {
-    .button-group {
-        display: flex;
-        justify-content: center;
-        margin: 0 auto;
-        flex-wrap: wrap;
+    .content {
         width: fit-content;
-        padding: 7.5px 15px;
-        margin-top: 30px;
-        border-radius: 5px;
-        box-shadow: $card-shadow-2;
-        background-color: $lightest-neutral;
-        span {
-            margin: 7.5px 0;
-            font-weight: 500;
-            color: $blue;
-            border-radius: 0;
-            border-color: $blue;
-            &:not(:first-of-type) {
-                margin-left: -2px;
+        margin: 0 auto;
+        .button-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: fit-content;
+            padding: 7.5px 15px;
+            margin-top: 30px;
+            border-radius: 5px;
+            box-shadow: $card-shadow-2;
+            background-color: $lightest-neutral;
+            span {
+                margin: 7.5px 0;
+                font-weight: 500;
+                color: $blue;
+                border-radius: 0;
+                border-color: $blue;
+                &:not(:first-of-type) {
+                    margin-left: -2px;
+                }
             }
         }
     }
