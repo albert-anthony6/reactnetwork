@@ -31,6 +31,15 @@ export default function AppHeader() {
         </li>
         <li>
           <NavLink
+            to="/errors"
+            className={styles['errors']}
+            activeClassName="nav--link__errors"
+          >
+            Errors
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/create-activity"
             className="btn-primary btn-primary__green"
             activeClassName=""

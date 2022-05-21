@@ -6,12 +6,15 @@ import { observer } from 'mobx-react-lite';
 import { Route, useLocation } from 'react-router-dom';
 import ActivityForm from './views/ActivityForm';
 import ActivityDetails from './views/ActivityDetails';
+import TestErrors from './views/TestErrors';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const location = useLocation();
 
   return (
     <>
+    <ToastContainer position='bottom-left' hideProgressBar />
       <Route exact path="/" component={Home} />
       <Route
         path={'/(.+)'}
@@ -26,6 +29,7 @@ function App() {
                 path={['/create-activity', '/manage/:id']}
                 component={ActivityForm}
               />
+              <Route path="/errors" component={TestErrors} />
             </main>
           </>
         )}
