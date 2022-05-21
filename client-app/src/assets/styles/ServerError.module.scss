@@ -1,0 +1,21 @@
+.server-error {
+    h3 {
+        color: $error-text;
+        margin: 20px 0;
+    }
+    .stack-trace {
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: $card-shadow-2;
+        background-color: $lightest-neutral;
+        h4 {
+            color: $blue;
+        }
+        p {
+            word-break: break-all;
+            @include bp-xl-desktop {
+                word-break: normal;
+            }
+        }
+    }
+}
