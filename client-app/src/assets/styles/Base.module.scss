@@ -1,5 +1,7 @@
-.g-input {
-    input {
+.g-input,
+.g-textarea {
+    input,
+    textarea {
         display: block;
         width: 100%;
         margin-bottom: 15px;
@@ -7,6 +9,7 @@
         border-radius: 3px;
         border: 1px solid $grey;
         outline: none;
+        resize: none;
     }
     span {
         font-size: 13px;
@@ -19,8 +22,10 @@
         cursor: default;
     }
 }
-.g-input__error {
-    input {
+.g-input__error,
+.g-textarea__error {
+    input,
+    textarea {
         background-color: $error;
         border-color: $red;
         &::placeholder {

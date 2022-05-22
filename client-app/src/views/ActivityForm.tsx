@@ -7,7 +7,8 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import GInput from '../components/GInput';
+import GInput from '../components/base/GInput';
+import GTextarea from '../components/base/GTextarea';
 
 export default observer(function ActivityForm() {
   const history = useHistory();
@@ -85,7 +86,7 @@ export default observer(function ActivityForm() {
             className={styles['activity-form']}
           >
             <GInput name="title" placeholder="Title" />
-            <GInput name="description" placeholder="Description" />
+            <GTextarea rows={3} name="description" placeholder="Description" />
             <GInput name="category" placeholder="Category" />
             <GInput name="date" placeholder="Date" />
             <GInput name="city" placeholder="City" />
