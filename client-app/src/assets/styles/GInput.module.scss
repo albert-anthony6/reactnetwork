@@ -1,0 +1,30 @@
+.g-input {
+    input {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 3px;
+        border: 1px solid $grey;
+        outline: none;
+    }
+    span {
+        font-size: 13px;
+        font-weight: 500;
+        border-width: 1px;
+        color: $error-text;
+        border-color: $red;
+        background-color: $lightest-neutral;
+        margin: -7px 0 10px 0;
+        cursor: default;
+    }
+}
+.g-input__error {
+    input {
+        background-color: $error;
+        border-color: $red;
+        &::placeholder {
+            color: $error-text;
+        }
+    }
+}

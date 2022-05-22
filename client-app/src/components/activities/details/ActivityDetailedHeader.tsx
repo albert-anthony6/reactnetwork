@@ -2,6 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import styles from '../../../assets/styles/ActivityDetailedHeader.module.scss';
 import { Activity } from '../../../models/activity';
+import { Link } from 'react-router-dom';
 
 interface Props {
   activity: Activity;
@@ -30,7 +31,9 @@ export default observer(function ActivityDetailedHeader({ activity }: Props) {
             Cancel attendance
           </span>
         </div>
-        <span className="btn-primary btn-primary__orange">Join Activity</span>
+        <Link to={`/manage/${activity.id}`}>
+          <span className="btn-primary btn-primary__orange">Manage Event</span>
+        </Link>
       </div>
     </div>
   );
