@@ -9,6 +9,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import GInput from '../components/base/GInput';
 import GTextarea from '../components/base/GTextarea';
+import GDropdown from '../components/base/GDropdown';
+import { categoryOptions } from '../utils/categoryOptions';
 
 export default observer(function ActivityForm() {
   const history = useHistory();
@@ -75,7 +77,7 @@ export default observer(function ActivityForm() {
   return (
     <div className="page">
       <Formik
-      validationSchema={validationSchema}
+        validationSchema={validationSchema}
         enableReinitialize
         initialValues={activity}
         onSubmit={values => console.log(values)}>
@@ -87,7 +89,7 @@ export default observer(function ActivityForm() {
           >
             <GInput name="title" placeholder="Title" />
             <GTextarea rows={3} name="description" placeholder="Description" />
-            <GInput name="category" placeholder="Category" />
+            <GDropdown options={categoryOptions} name="category" placeholder="Category" />
             <GInput name="date" placeholder="Date" />
             <GInput name="city" placeholder="City" />
             <GInput name="venue" placeholder="Venue" />
