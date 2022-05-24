@@ -3,6 +3,7 @@ import { useField } from 'formik';
 import {ReactComponent as CaratIcon} from '../../assets/icons/carat_icon.svg';
 import {ReactComponent as XIcon} from '../../assets/icons/x_icon.svg';
 import styles from '../../assets/styles/Base.module.scss';
+import { useEffect } from 'react';
 
 interface Props {
     placeholder: string;
@@ -13,12 +14,43 @@ interface Props {
 
 export default function GDropdown(props: Props) {
     const [active, setActive] = useState(false);
+    const [menuOptions, setMenuOptions] = useState(props.options);
+    const [search, setSearch] = useState('');
     const [selectedOption, setSelectedOption] = useState('Select a category');
     const [field, meta, helpers] = useField(props.name);
 
-    function handleBlur() {
+    useEffect(() => {
+        handleFilterChange();
+    }, [search])
+
+    useEffect(() => {
+        // When the dropdown closes, clear the search input box
+        if (!active && search) {
+            setSearch('');
+        }
+    }, [active])
+
+    function handleBlur(e: any) {
         helpers.setTouched(true)
-        if (active) setActive(false);
+        // If clicked amywhere outside of the element
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+            if (active) setActive(false);
+        }
+    }
+
+    function handleFilterFocus() {
+        helpers.setTouched(false)
+    }
+
+    function handleFilterChange() {
+        const filteredMenuOptions = props.options.filter((option: any) => {
+            return option.value.toLowerCase().includes(search.toLowerCase())
+        });
+        setMenuOptions(filteredMenuOptions);
+    }
+
+    function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setSearch(e.target.value);
     }
 
     function toggleActive() {
@@ -42,14 +74,19 @@ export default function GDropdown(props: Props) {
             <div
                 className={styles['select-box']}
                 tabIndex={0}
-                onBlur={() => handleBlur()}
+                onBlur={(e) => handleBlur(e)}
             >
                 <div className={styles['icon-container']}>
-                    {!field.value && <CaratIcon onClick={() => toggleActive()} className={active ? `${styles['carat-icon']} ${styles['rotate']}` : styles['carat-icon']} />}
+                    {!field.value && (
+                        <CaratIcon
+                            onClick={() => toggleActive()}
+                            className={active ? `${styles['carat-icon']} ${styles['rotate']}` : styles['carat-icon']}
+                        />
+                    )}
                     {field.value && <XIcon onClick={() => clearSelection()} className={styles['x-icon']} />}
                 </div>
                 <div className={active ? `${styles['options-container']} ${styles['active']}` : `${styles['options-container']}`}>
-                    {props.options.map((option: any, idx: number) => (
+                    {menuOptions.map((option: any, idx: number) => (
                         <div onClick={() => selectOption(option)} className={styles['option']}  key={`category-${idx}`}>
                             <input type="radio" className={styles['radio']} id={option.value} name="category" />
                             <label htmlFor={option.value}>{option.text}</label>
@@ -61,6 +98,9 @@ export default function GDropdown(props: Props) {
                     className={field.value ? `${styles['selected']}` : `${styles['selected']} ${styles['placeholder-text']}`}
                 >
                     {selectedOption}
+                </div>
+                <div className={styles['search-box']}>
+                    <input onChange={(e) => handleSearchChange(e)} onFocus={() => handleFilterFocus()} value={search} type="text" placeholder="Start Typing..." />
                 </div>
             </div>
             {meta.touched && meta.error ? (
