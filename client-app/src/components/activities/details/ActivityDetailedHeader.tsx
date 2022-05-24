@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite';
 import styles from '../../../assets/styles/ActivityDetailedHeader.module.scss';
 import { Activity } from '../../../models/activity';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 
 interface Props {
   activity: Activity;
@@ -17,7 +18,7 @@ export default observer(function ActivityDetailedHeader({ activity }: Props) {
       />
       <div className={styles['content']}>
         <h5>{activity.title}</h5>
-        <p>{activity.date}</p>
+        <p>{format(activity.date!, 'dd MMM yyyy')}</p>
         <p>
           Hosted by <strong>Bob</strong>
         </p>

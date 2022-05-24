@@ -97,7 +97,7 @@ export default function GDropdown(props: Props) {
                     onClick={() => toggleActive()}
                     className={field.value ? `${styles['selected']}` : `${styles['selected']} ${styles['placeholder-text']}`}
                 >
-                    {selectedOption}
+                    {field.value || selectedOption}
                 </div>
                 <div className={styles['search-box']}>
                     <input onChange={(e) => handleSearchChange(e)} onFocus={() => handleFilterFocus()} value={search} type="text" placeholder="Start Typing..." />

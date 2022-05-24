@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Activity } from '../../models/activity';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faLocationPin } from '@fortawesome/free-solid-svg-icons';
+import { format } from 'date-fns';
 
 interface Props {
   activity: Activity;
@@ -26,7 +27,7 @@ export default function ActivityListItem({ activity }: Props) {
       <div className={styles['info']}>
         <p className={styles['date']}>
           <FontAwesomeIcon icon={faClock} />
-          {activity.date}
+          {format(activity.date!, 'dd MMM yyyy h:mm aa')}
         </p>
         <p>
           <FontAwesomeIcon icon={faLocationPin} />

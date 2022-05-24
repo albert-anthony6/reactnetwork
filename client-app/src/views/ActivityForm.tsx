@@ -11,6 +11,8 @@ import GInput from '../components/base/GInput';
 import GTextarea from '../components/base/GTextarea';
 import GDropdown from '../components/base/GDropdown';
 import { categoryOptions } from '../utils/categoryOptions';
+import GDate from '../components/base/GDate';
+import { Activity } from '../models/activity';
 
 export default observer(function ActivityForm() {
   const history = useHistory();
@@ -24,12 +26,12 @@ export default observer(function ActivityForm() {
   } = activityStore;
   const { id } = useParams<{ id: string }>();
 
-  const [activity, setActivity] = useState({
+  const [activity, setActivity] = useState<Activity>({
     id: '',
     title: '',
     category: '',
     description: '',
-    date: '',
+    date: null,
     city: '',
     venue: '',
   });
@@ -90,7 +92,13 @@ export default observer(function ActivityForm() {
             <GInput name="title" placeholder="Title" />
             <GTextarea rows={3} name="description" placeholder="Description" />
             <GDropdown options={categoryOptions} name="category" placeholder="Category" />
-            <GInput name="date" placeholder="Date" />
+            <GDate
+              name="date"
+              placeholderText="Date"
+              showTimeSelect
+              timeCaption="time"
+              dateFormat="MMMM d, yyyy h:mm aa"
+            />
             <GInput name="city" placeholder="City" />
             <GInput name="venue" placeholder="Venue" />
             <div className={styles['form-buttons']}>

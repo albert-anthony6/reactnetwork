@@ -8,6 +8,7 @@ import {
   faCalendar,
   faLocationPin,
 } from '@fortawesome/free-solid-svg-icons';
+import { format } from 'date-fns';
 
 interface Props {
   activity: Activity;
@@ -22,7 +23,7 @@ export default observer(function ActivityDetailedInfo({ activity }: Props) {
       </div>
       <div className={styles['info-row']}>
         <FontAwesomeIcon icon={faCalendar} />
-        {activity.date}
+        {format(activity.date!, 'dd MMM yyyy h:mm aa')}
       </div>
       <div className={styles['info-row']}>
         <FontAwesomeIcon icon={faLocationPin} />
