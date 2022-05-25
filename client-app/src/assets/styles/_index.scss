@@ -34,6 +34,11 @@ body {
   .page {
     padding: 120px 10%;
   }
+  .disabled {
+    cursor: default !important;
+    opacity: 0.5;
+    pointer-events: none !important;
+  }
 }
 
 code {

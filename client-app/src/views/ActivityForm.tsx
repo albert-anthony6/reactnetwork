@@ -1,11 +1,11 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from '../components/Loader';
 import styles from '../assets/styles/ActivityForm.module.scss';
 import { useStore } from '../stores';
 import { observer } from 'mobx-react-lite';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import GInput from '../components/base/GInput';
 import GTextarea from '../components/base/GTextarea';
@@ -40,7 +40,7 @@ export default observer(function ActivityForm() {
     title: Yup.string().required('The activity title is required'),
     description: Yup.string().required('The activity description is required'),
     category: Yup.string().required(),
-    date: Yup.string().required(),
+    date: Yup.string().required('Date is required').nullable(),
     venue: Yup.string().required(),
     city: Yup.string().required(),
   })
@@ -49,30 +49,22 @@ export default observer(function ActivityForm() {
     if (id) loadActivity(id).then((activity) => setActivity(activity!));
   }, [id, loadActivity]);
 
-  // function handleSubmit(event: FormEvent<HTMLFormElement>) {
-  //   event.preventDefault();
-  //   if (activity.id.length === 0) {
-  //     // Creating a new id for the new activity object
-  //     let newActivity = {
-  //       ...activity,
-  //       id: uuid(),
-  //     };
-  //     createActivity(newActivity).then(() =>
-  //       history.push(`/activities/${newActivity.id}`)
-  //     );
-  //   } else {
-  //     updateActivity(activity).then(() =>
-  //       history.push(`/activities/${activity.id}`)
-  //     );
-  //   }
-  // }
-
-  // function handleInputChange(
-  //   event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // ) {
-  //   const { name, value } = event.target;
-  //   setActivity({ ...activity, [name]: value });
-  // }
+  function handleformSubmit(activity: Activity) {
+    if (activity.id.length === 0) {
+      // Creating a new id for the new activity object
+      let newActivity = {
+        ...activity,
+        id: uuid(),
+      };
+      createActivity(newActivity).then(() =>
+        history.push(`/activities/${newActivity.id}`)
+      );
+    } else {
+      updateActivity(activity).then(() =>
+        history.push(`/activities/${activity.id}`)
+      );
+    }
+  }
 
   if (loadingInitial) return <Loader />;
 
@@ -82,13 +74,15 @@ export default observer(function ActivityForm() {
         validationSchema={validationSchema}
         enableReinitialize
         initialValues={activity}
-        onSubmit={values => console.log(values)}>
-        {({handleSubmit}) => (
+        onSubmit={(values) => handleformSubmit(values)}>
+        {({handleSubmit, isValid, isSubmitting, dirty}) => (
           <Form
+            onKeyPress={e => { e.key === 'Enter' && e.preventDefault() }}
             onSubmit={handleSubmit}
             autoComplete="off"
             className={styles['activity-form']}
           >
+            <h4>Activity Details</h4>
             <GInput name="title" placeholder="Title" />
             <GTextarea rows={3} name="description" placeholder="Description" />
             <GDropdown options={categoryOptions} name="category" placeholder="Category" />
@@ -99,6 +93,7 @@ export default observer(function ActivityForm() {
               timeCaption="time"
               dateFormat="MMMM d, yyyy h:mm aa"
             />
+            <h4>Location Details</h4>
             <GInput name="city" placeholder="City" />
             <GInput name="venue" placeholder="Venue" />
             <div className={styles['form-buttons']}>
@@ -107,7 +102,7 @@ export default observer(function ActivityForm() {
                   Cancel
                 </button>
               </Link>
-              <button className="btn-primary btn-primary__green">
+              <button className={`${isSubmitting || !isValid || !dirty ? 'disabled btn-primary btn-primary__green' : 'btn-primary btn-primary__green'}`}>
                 {!loading && <span>Submit</span>}
                 {loading && <Loader inline={true} content="Submit" />}
               </button>

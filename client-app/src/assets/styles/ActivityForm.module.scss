@@ -1,6 +1,10 @@
 .activity-form {
   background-color: $lightest-neutral;
   padding: 15px;
+  h4 {
+    color: $teal;
+    margin-bottom: 10px;
+  }
   .form-buttons {
     text-align: right;
     & button:first-child {

@@ -20,15 +20,12 @@ export default function GDropdown(props: Props) {
     const [field, meta, helpers] = useField(props.name);
 
     useEffect(() => {
-        handleFilterChange();
-    }, [search])
-
-    useEffect(() => {
         // When the dropdown closes, clear the search input box
         if (!active && search) {
             setSearch('');
         }
-    }, [active])
+        handleFilterChange();
+    }, [active, search])
 
     function handleBlur(e: any) {
         helpers.setTouched(true)
