@@ -10,6 +10,7 @@ import TestErrors from './views/TestErrors';
 import { ToastContainer } from 'react-toastify';
 import NotFound from './views/NotFound';
 import ServerError from './views/ServerError';
+import LoginForm from './components/LoginForm';
 
 function App() {
   const location = useLocation();
@@ -34,6 +35,7 @@ function App() {
               />
               <Route path="/errors" component={TestErrors} />
               <Route path="/server-error" component={ServerError} />
+              <Route path="/login" component={LoginForm} />
               <Route component={NotFound} />
               </Switch>
             </main>

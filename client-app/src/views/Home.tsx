@@ -13,8 +13,8 @@ export default function Home() {
         <h2>ReactNetwork</h2>
       </div>
       <h5>Welcome to ReactNetwork</h5>
-      <Link to="/activities" className="btn-secondary btn-secondary__white">
-        Take me to the Activities!
+      <Link to="/login" className="btn-secondary btn-secondary__white">
+        Login!
       </Link>
     </div>
   );

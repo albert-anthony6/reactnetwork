@@ -122,6 +122,11 @@ code {
     border: none;
     background-color: $light-grey;
   }
+  &__error {
+    border-color: $red;
+    color: $error-text;
+    background-color: $error;
+  }
 }
 
 .react-calendar {
