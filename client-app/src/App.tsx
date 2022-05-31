@@ -13,6 +13,7 @@ import ServerError from './views/ServerError';
 import LoginForm from './components/LoginForm';
 import Loader from './components/Loader';
 import { useStore } from './stores/index';
+import ModalContainer from './components/modals/ModalContainer';
 
 function App() {
   const location = useLocation();
@@ -31,6 +32,7 @@ function App() {
   return (
     <>
     <ToastContainer position='bottom-left' hideProgressBar />
+      <ModalContainer />
       <Route exact path="/" component={Home} />
       <Route
         path={'/(.+)'}
@@ -48,7 +50,6 @@ function App() {
               />
               <Route path="/errors" component={TestErrors} />
               <Route path="/server-error" component={ServerError} />
-              <Route path="/login" component={LoginForm} />
               <Route component={NotFound} />
               </Switch>
             </main>

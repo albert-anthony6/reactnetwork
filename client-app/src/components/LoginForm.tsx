@@ -9,7 +9,8 @@ import { observer } from 'mobx-react-lite';
 export default observer(function LoginForm() {
     const {userStore} = useStore();
     return (
-        <div className={`page ${styles['login-form']}`}>
+        <div className={styles['login-form']}>
+            <h3>Login to ReactNetwork</h3>
             <Formik
                 initialValues={{email: '', password: '', error: null}}
                 onSubmit={(values, {setErrors}) => userStore.login(values).catch(() =>

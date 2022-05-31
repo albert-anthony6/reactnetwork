@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useStore } from '../stores/index';
 import { observer } from 'mobx-react-lite';
@@ -9,6 +9,19 @@ import styles from '../assets/styles/AppHeader.module.scss';
 export default observer(function AppHeader() {
   const [showDropdown, setShowDropdown] = useState(false);
   const { userStore: { user, logout } } = useStore();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const closeDropdown = (e: any) => {
+      if (e.target !== dropdownRef.current && e.target !== dropdownRef.current?.children[0]) {
+        setShowDropdown(false);
+      }
+    }
+
+    document.body.addEventListener('click', closeDropdown);
+
+    return () => document.body.removeEventListener('click', closeDropdown);
+  }, [])
 
   function toggleDropdown() {
     setShowDropdown(!showDropdown);
@@ -62,7 +75,7 @@ export default observer(function AppHeader() {
           <img 
             src={user?.image || require('../assets/images/user.png')} alt="User."
           />
-          <div onClick={() => toggleDropdown()} className={styles['dropdown']}>
+          <div ref={dropdownRef} onClick={() => toggleDropdown()} className={styles['dropdown']}>
             {user?.displayName} <FontAwesomeIcon icon={faCaretDown} />
           </div>
           {showDropdown && (

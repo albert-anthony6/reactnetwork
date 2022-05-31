@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../stores';
+import LoginForm from '../components/LoginForm';
 import styles from '../assets/styles/Home.module.scss';
 
 export default observer(function Home() {
-  const {userStore} = useStore();
+  const { userStore, modalStore } = useStore();
   return (
     <div className={`page ${styles['home']}`}>
       <div className={styles['logo']}>
@@ -23,9 +24,18 @@ export default observer(function Home() {
           </Link>
         </>
       ) : (
-        <Link to="/login" className="btn-secondary btn-secondary__white">
-          Login!
-        </Link>
+        <>
+          <span onClick={() => modalStore.openModal(<LoginForm />)}
+            className="btn-secondary btn-secondary__white"
+          >
+            Login!
+          </span>
+          <span onClick={() => modalStore.openModal(<h1>Register</h1>)}
+            className="btn-secondary btn-secondary__white"
+          >
+            Register!
+          </span>
+        </>
       )}
     </div>
   );
