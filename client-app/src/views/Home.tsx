@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { useStore } from '../stores';
 import LoginForm from '../components/LoginForm';
 import styles from '../assets/styles/Home.module.scss';
+import RegisterForm from '../components/RegisterForm';
 
 export default observer(function Home() {
   const { userStore, modalStore } = useStore();
@@ -30,7 +31,7 @@ export default observer(function Home() {
           >
             Login!
           </span>
-          <span onClick={() => modalStore.openModal(<h1>Register</h1>)}
+          <span onClick={() => modalStore.openModal(<RegisterForm />)}
             className="btn-secondary btn-secondary__white"
           >
             Register!
