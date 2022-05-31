@@ -6,6 +6,7 @@ import Loader from '../components/Loader';
 import { observer } from 'mobx-react-lite';
 import * as Yup from 'yup';
 import styles from '../assets/styles/LoginForm.module.scss';
+import ValidationErrors from './ValidationErrors';
 
 export default observer(function RegisterForm() {
     const {userStore} = useStore();
@@ -14,8 +15,8 @@ export default observer(function RegisterForm() {
             <h3>Sign up to ReactNetwork</h3>
             <Formik
                 initialValues={{displayName: '', username: '', email: '', password: '', error: null}}
-                onSubmit={(values, {setErrors}) => userStore.register(values).catch(() =>
-                    setErrors({error: 'Invalid email or password'}))}
+                onSubmit={(values, {setErrors}) => userStore.register(values).catch((err) =>
+                    setErrors({error: err}))}
                 validationSchema={Yup.object({
                     displayName: Yup.string().required(),
                     username: Yup.string().required(),
@@ -30,7 +31,7 @@ export default observer(function RegisterForm() {
                         <GInput name="email" placeholder="Email" />
                         <GInput name="password" placeholder="Password" type="password" />
                         <ErrorMessage 
-                            name="error" render={() => <span className="btn-secondary btn-secondary__error">{errors.error}</span>}
+                            name="error" render={() => <ValidationErrors errors={errors.error} />}
                         />
                         <button
                             type="submit"

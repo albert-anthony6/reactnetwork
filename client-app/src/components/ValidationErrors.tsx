@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../assets/styles/ValidationErrors.module.scss';
 
 interface Props {
-    errors: string[] | null,
+    errors: any,
 }
 
 export default function ValidationErrors({errors}: Props) {
@@ -10,7 +10,7 @@ export default function ValidationErrors({errors}: Props) {
         <div className={styles["validation-errors"]}>
             {errors && (
                 <ul className={styles['error-list']}>
-                    {errors.map((err: any, i) => (
+                    {errors.map((err: any, i: any) => (
                         <li key={i}>&#8226; {err}</li>
                     ))}
                 </ul>

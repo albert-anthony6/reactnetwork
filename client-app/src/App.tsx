@@ -10,7 +10,6 @@ import TestErrors from './views/TestErrors';
 import { ToastContainer } from 'react-toastify';
 import NotFound from './views/NotFound';
 import ServerError from './views/ServerError';
-import LoginForm from './components/LoginForm';
 import Loader from './components/Loader';
 import { useStore } from './stores/index';
 import ModalContainer from './components/modals/ModalContainer';
