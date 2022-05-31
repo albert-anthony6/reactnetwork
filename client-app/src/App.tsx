@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppHeader from './components/AppHeader';
 import ActivityDashboard from './views/ActivityDashboard';
 import Home from './views/Home';
@@ -11,9 +11,22 @@ import { ToastContainer } from 'react-toastify';
 import NotFound from './views/NotFound';
 import ServerError from './views/ServerError';
 import LoginForm from './components/LoginForm';
+import Loader from './components/Loader';
+import { useStore } from './stores/index';
 
 function App() {
   const location = useLocation();
+  const { commonStore, userStore } = useStore();
+
+  useEffect(() => {
+    if (commonStore.token) {
+      userStore.getUser().finally(() => commonStore.setAppLoaded());
+    } else {
+      commonStore.setAppLoaded();
+    }
+  }, [commonStore, userStore]);
+
+  if (!commonStore.appLoaded) return <Loader content="Loading app..." />
 
   return (
     <>

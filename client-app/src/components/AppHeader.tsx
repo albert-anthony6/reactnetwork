@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useStore } from '../stores/index';
+import { observer } from 'mobx-react-lite';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import styles from '../assets/styles/AppHeader.module.scss';
 
-export default function AppHeader() {
+export default observer(function AppHeader() {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const { userStore: { user, logout } } = useStore();
+
+  function toggleDropdown() {
+    setShowDropdown(!showDropdown);
+  }
+
   return (
     <header className={styles['app-header']}>
       <ul>
@@ -38,7 +49,7 @@ export default function AppHeader() {
             Errors
           </NavLink>
         </li>
-        <li>
+        <li className={styles['create-activity']}>
           <NavLink
             to="/create-activity"
             className="btn-primary btn-primary__green"
@@ -47,7 +58,25 @@ export default function AppHeader() {
             Create Activity
           </NavLink>
         </li>
+        <li className={styles['user']}>
+          <img 
+            src={user?.image || require('../assets/images/user.png')} alt="User."
+          />
+          <div onClick={() => toggleDropdown()} className={styles['dropdown']}>
+            {user?.displayName} <FontAwesomeIcon icon={faCaretDown} />
+          </div>
+          {showDropdown && (
+            <ul className={styles['dropdown-options']}>
+              <li>
+                <NavLink to={`/profile/${user?.username}`} activeClassName="">
+                  <FontAwesomeIcon icon={faUser} /> My Profile
+                </NavLink>
+              </li>
+              <li onClick={logout}><FontAwesomeIcon icon={faPowerOff} /> Logout</li>
+            </ul>
+          )}
+        </li>
       </ul>
     </header>
   );
-}
+})

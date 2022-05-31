@@ -15,7 +15,7 @@ export default observer(function ActivityDashboard() {
   }, [loadActivities, activityRegistry.size]);
 
   if (activityStore.loadingInitial)
-    return <Loader content="Loading Activities" />;
+    return <Loader content="Loading activities..." />;
 
   return (
     <div className={`page ${styles['activity-dashboard']}`}>
