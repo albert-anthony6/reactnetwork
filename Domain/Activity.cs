@@ -20,5 +20,7 @@ namespace Domain
         public String City { get; set; }
 
         public String Venue { get; set; }
+
+        public ICollection<ActivityAttendee> Attendees { get; set; }
     }
 }
