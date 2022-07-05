@@ -15,9 +15,9 @@ namespace API.Middleware
         private readonly IHostEnvironment _env;
         public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
         {
-            this._env = env;
-            this._next = next;
-            this._logger = logger;
+            _env = env;
+            _next = next;
+            _logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext context)
